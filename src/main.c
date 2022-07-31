@@ -119,10 +119,7 @@ static void gpio_init()
 
 static void tim1_init()
 {	
-	// 16 000 000 (fOSC) / 2048 (TIM1 prescaler) = 7812
-	// 7812 = 1E84 => auto-reload register
-
-	// Divide fosc by 1024
+	// Divide fosc by 256
 	TIM1_PSCRH = 0x01;
 	TIM1_PSCRL = 0x00;
 	
