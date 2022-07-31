@@ -1,0 +1,43 @@
+#ifndef __STM8_IO__
+#define __STM8_IO__
+
+// Port registers
+#define PORT_ODR(PORT) PORT ## _ODR
+#define PORT_IDR(PORT) PORT ## _IDR
+#define PORT_DDR(PORT) PORT ## _DDR
+#define PORT_CR1(PORT) PORT ## _CR1
+#define PORT_CR2(PORT) PORT ## _CR2
+
+// Set the IO as a push-pull output
+#define OUTPUT(...) OUTPUT_MACRO(__VA_ARGS__)
+#define OUTPUT_MACRO(PORT, BIT) \
+	PORT_DDR(PORT) |= BIT; \
+	PORT_CR1(PORT) |= BIT; \
+	PORT_CR2(PORT) |= BIT;
+
+#define INPUT_PULLUP(...) INPUT_PULLUP_MACRO(__VA_ARGS__)
+#define INPUT_PULLUP_MACRO(PORT, BIT) \
+	PORT_DDR(PORT) &= ~BIT; \
+	PORT_CR1(PORT) |= BIT; \
+	PORT_CR2(PORT) &= ~BIT;
+
+#define INPUT_FLOAT(...) INPUT_FLOAT_MACRO(__VA_ARGS__)
+#define INPUT_FLOAT_MACRO(PORT, BIT) \
+	PORT_DDR(PORT) &= ~BIT; \
+	PORT_CR1(PORT) &= ~BIT; \
+	PORT_CR2(PORT) &= ~BIT;
+	
+#define INPUT_IRQ_ENABLE(...) INPUT_IRQ_ENABLE_MACRO(__VA_ARGS__)
+#define INPUT_IRQ_ENABLE_MACRO(PORT, BIT) \
+	PORT_CR2(PORT) |= BIT;
+
+#define READ(...) READ_MACRO(__VA_ARGS__)
+#define READ_MACRO(PORT, BIT) ((PORT_IDR(PORT) & BIT) == BIT)
+
+#define WRITE_ON(...) WRITE_ON_MACRO(__VA_ARGS__)
+#define WRITE_ON_MACRO(PORT, BIT) (PORT_ODR(PORT) |= BIT)
+
+#define WRITE_OFF(...) WRITE_OFF_MACRO(__VA_ARGS__)
+#define WRITE_OFF_MACRO(PORT, BIT) (PORT_ODR(PORT) &= ~BIT)
+
+#endif
