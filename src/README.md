@@ -20,7 +20,7 @@ When the CPU boots up (by being powered from a battery) it sets up all the hardw
 
 The main loop first checks if a button interrupt had been triggered, if yes it sets up the CC1101 to transmit one of the 4 codes. Then GDO2 is being checked to see if the radio chip finished transmission, if it did and one of the 4 buttons is still being pressed TIM1 is used to wait for a while and transmit again. If none of the buttons are being pressed and there is no more data to be transmitted, the CPU puts the CC1101 to low power mode, disables its peripherals and halts until a button interrupt wakes it up.
 
-The following graph shows the main setps of the firmware:
+The following graph shows the main steps of the firmware:
 
 ```mermaid
   graph TD;  
