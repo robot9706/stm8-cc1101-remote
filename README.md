@@ -31,4 +31,4 @@ Notes:
 
 * `docs/` contains documentation for the chips on the board.
 * `sdcc/` contains SDCC. Not part of this repository.
-* `src/` contains the custom firmware for the remote.
+* `src/` contains the source and documentation of the custom firmware for the remote.
