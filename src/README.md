@@ -4,7 +4,7 @@ This firmware acomplishes a very simple task. It transmits 4 predefined codes as
 
 ## Compile and flash
 
-The firmware uses SDCC to compile and STVP (ST Visual Programmer) is used to flash the STM8 chip.
+The firmware uses SDCC to compile and STVP (ST Visual Programmer) to flash the STM8 chip.
 
 Compiling can be done using `build.bat`
 
