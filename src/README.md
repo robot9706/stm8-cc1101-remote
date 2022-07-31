@@ -27,8 +27,12 @@ The following graph shows the main steps of the firmware:
       classDef setup stroke:#ff0000;
       classDef mainloop stroke:#00ff00;
       classDef sleep stroke:#0000ff;
+      classDef halt stroke:#c4c4c4;
+      
+      BT[BootROM] --> BTA[Setup CPU hardware]
+      BTA --> A
   
-      A[Setup CPU hardware]-->B[Reset CC1101];
+      A[Enable peripheral clocks]-->B[Reset CC1101];
       B:::setup-->C[Setup CC1101 registers];
       C:::setup-->D[Enable interrupts and main loop starts];
 
@@ -52,7 +56,7 @@ The following graph shows the main steps of the firmware:
       
       P:::sleep --> Q[Disable CPU peripherals]
       Q:::sleep --> S[HALT CPU]
-      S:::sleep --> Z[IRQ wakes CPU]
+      S:::halt -- Button press --> Z[IRQ wakes CPU]
       Z:::sleep --> A:::setup
 ```
 
